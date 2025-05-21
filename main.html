@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLN Mobile Clone</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+
+  <!-- Bootstrap CSS from CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <style>
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+    }
+
+    .hero-image {
+      background-color: #f0f0f0;
+      width: 100%;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 24px;
+    }
+
+    .section-block {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <!-- Header -->
+  <header class="bg-white border-bottom">
+    <div class="container-fluid px-4 py-2 d-flex justify-content-between align-items-center"
+      style="background-color: #e8e8e8;">
+      <div class="d-flex align-items-center">
+        <!-- <img src="https://layanan.pln.co.id/_nuxt/img/pln-txt.ebe89ad.svg" alt="PLN" width="35" class="mr-2"> -->
+        <strong class="text-primary"></strong>
+      </div>
+      <div class="d-none d-md-flex align-items-center">
+        <a href="#" class="text-muted mx-2"><i class="fa fa-file-text-o mr-1"></i> Info Lainnya</a>
+        <a href="#" class="text-muted mx-2"><i class="fa fa-info-circle mr-1"></i> Info Layanan</a>
+        <a href="#" class="text-muted mx-2"><i class="fa fa-users mr-1"></i> Promo</a>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-top">
+      <div class="container-fluid px-4">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#plnNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="plnNavbar">
+
+          <!-- Kiri: Logo -->
+
+
+          <!-- Tengah: Menu utama -->
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="#"><img
+                  src="https://layanan.pln.co.id/_nuxt/img/pln-txt.ebe89ad.svg" alt="PLN" width="60" class="mr-2"></a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">PLN Mobile</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="permohonanDropdown" role="button"
+                data-toggle="dropdown">Permohonan</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Pasang Baru</a>
+                <a class="dropdown-item" href="#">Sambung Sementara</a>
+                <a class="dropdown-item" href="#">Ubah Daya</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="simulasiDropdown" role="button"
+                data-toggle="dropdown">Simulasi</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Simulasi Pasang Baru</a>
+                <a class="dropdown-item" href="#">Simulasi Sambung Sementara</a>
+                <a class="dropdown-item" href="#">Simulasi Ubah Daya</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Renewable Energy Certificate</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Partnership SPKLU PLN</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Kebijakan Privasi</a></li>
+            <li class="nav-item"><a class="nav-link text-primary" href="#">Ultra Critical Service</a></li>
+            
+          </ul>
+
+          <!-- Kanan: Tombol login -->
+          <button class="btn btn-info text-white">Masuk</button>
+        </div>
+      </div>
+    </nav>
+
+  </header>
+
+
+  <!-- Hero Section -->
+  <!-- <section class="container my-5">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h2 class="mb-3">Mulai Pengalaman Baru di PLN Mobile</h2>
+        <p>Semua Keperluan Listrik dan rumah dalam 1 Aplikasi PLN Mobile, semua semakin mudah!</p>
+        <div class="mt-4">
+          <a href="https://play.google.com/store/apps/details?id=com.icon.pln123" target="_blank" class="btn btn-outline-primary btn-sm">
+            <i class="fa fa-android"></i> Google Play
+          </a>
+          <a href="https://apps.apple.com/nz/app/pln-mobile/id1299581030" target="_blank" class="btn btn-outline-dark btn-sm ml-2">
+            <i class="fa fa-apple"></i> App Store
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 text-center">
+        <div class="hero-image">[Hero Image Placeholder]</div>
+      </div>
+    </div>
+  </section> -->
+
+  <section class="container section-block">
+    <div class="text-center mb-4">
+      <img src="https://ik.imagekit.io/37g0lwy5ay/ultra.png" alt="Ultra Critical Service" class="mb-3"
+        style="max-width:100px;">
+      <h3 class="font-weight-bold text-dark">Layanan <span class="text-danger">Ultra Critical</span></h3>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <p class="text-center font-weight-normal" style="font-size: 1.1rem; line-height: 1.8;">
+          Adalah layanan yang menyediakan kehandalan redundancy <strong>N-1</strong> dengan kualitas tanpa kedip dan
+          menyediakan
+          <em>back-up power</em> dengan skema penyediaan fasilitas yang memudahkan pelanggan yang menginginkan tingkat
+          kehandalan
+          <strong>super critical</strong> seperti pelanggan <strong>datacenter, VIP, dan VVIP</strong> dengan standar
+          internasional.
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-10 text-center">
+        <img src="https://ik.imagekit.io/37g0lwy5ay/image.png" alt="Data Center" class="img-fluid rounded shadow"
+          style="max-height:400px; object-fit: cover;">
+      </div>
+    </div>
+  </section>
+
+  <div style="position:relative; top:-20px;">
+    <svg viewBox="0 0 1440 100" style="display: block;" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#f9f9f9" d="M0,64L1440,0L1440,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <section class="container section-block">
+    <!-- Judul Utama -->
+    <div class="text-center mb-4">
+      <h2 class="font-weight-bold">Best Solution</h2>
+      <h4 class="text-muted">Product Description</h4>
+    </div>
+
+    <!-- Daftar Tantangan -->
+    <div class="mb-5">
+      <h5 class="font-weight-bold">Tantangan dalam Penyediaan Data Center di Indonesia:</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">1. Sulitnya memilih lahan yang tepat dengan investasi yang layak</li>
+        <li class="list-group-item">2. Ketersediaan pasokan kelistrikan yang cukup dan N-1 dari sub system yang berbeda
+        </li>
+        <li class="list-group-item">3. Kecepatan dalam pengadaan fasilitas kelistrikan sesuai dengan standar TIA</li>
+        <li class="list-group-item">4. Biaya investasi awal yang besar</li>
+        <li class="list-group-item">5. Okupansi colocation dari tenant di awal pembuatan yang tidak pasti</li>
+        <li class="list-group-item">6. Fix Construction dan sulit di scale-able</li>
+        <li class="list-group-item">7. Penyediaan Energi Hijau</li>
+      </ul>
+    </div>
+
+    <!-- Diagram Visual -->
+    <div class="text-center">
+      <img src="https://ik.imagekit.io/37g0lwy5ay/image.png?updatedAt=1747823669181" alt="Diagram Best Solution"
+        class="img-fluid rounded shadow">
+    </div>
+  </section>
+
+  <div style="position:relative; top:-20px;">
+    <svg viewBox="0 0 1440 100" style="display: block;" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#f9f9f9" d="M0,64L1440,0L1440,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <section class="container section-block">
+    <!-- Judul Utama -->
+    <div class="text-center mb-5">
+      <h2 class="font-weight-bold">Skema Layanan</h2>
+      <h5 class="text-danger">Layanan dengan mengedepankan kemitraan yang saling menguntungkan</h5>
+    </div>
+
+    <!-- Gambar Solution Package -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-10 text-center">
+        <img src="https://ik.imagekit.io/37g0lwy5ay/image.png?updatedAt=1747824292858" alt="Solution Package"
+          class="img-fluid rounded shadow">
+      </div>
+    </div>
+
+    <!-- Tabel Ringkasan Produk -->
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover text-center small bg-white">
+            <thead class="thead-dark">
+              <tr>
+                <th>Produk Layanan</th>
+                <th>Konfigurasi</th>
+                <th>PLN Group</th>
+                <th>Leveling System</th>
+                <th>Elemen Produk</th>
+                <th>Pricing</th>
+                <th>SLA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1</strong><br>PAKET LAYANAN HYPERSCALE DATA CENTER (TIER III & IV)</td>
+                <td>Multiple active power path, including N redundancy paths (2N+1)</td>
+                <td>PLN UP3<br>MCT<br>Hale yora Power</td>
+                <td>
+                  System 1-4<br>Genset + UPS<br>Operational variants
+                </td>
+                <td>
+                  Pasang Baru<br>Premium Level A<br>Operation & Maintenance
+                </td>
+                <td>
+                  BP Pasang Baru<br>12x cicil<br>Biaya O/M dan subscription
+                </td>
+                <td>
+                  Energize 20 hari<br>Zero Down Time<br>Anti Kedip
+                </td>
+              </tr>
+              <tr>
+                <td><strong>2</strong><br>(ADD-ON) LAYANAN DATA CENTER ENERGI HIJAU</td>
+                <td>Data Center with Renewable Energy</td>
+                <td>PLN UP3<br>ICON+<br>PAE<br>PLN Pusat</td>
+                <td>REC atau PLTS Atap</td>
+                <td>REC<br>Pemasangan PLTS</td>
+                <td>
+                  Pembelian bundling / unbundling REC<br>PLTS Retrofitting
+                </td>
+                <td>
+                  REC & PLTS: Max 3 bulan sejak registrasi
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="position:relative; top:-20px;">
+    <svg viewBox="0 0 1440 100" style="display: block;" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#f9f9f9" d="M0,64L1440,0L1440,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <section class="container section-block">
+    <div class="text-center mb-4">
+      <h2 class="font-weight-bold">Site Selection</h2>
+      <p class="mx-auto" style="max-width: 720px; font-size: 1.1rem;">
+        <strong class="text-dark">Dengan teknologi pemetaan</strong> asset dan auto route
+        <span class="text-muted">untuk menemukan konfigurasi penyambungan se-efisien mungkin, untuk melakukan estimasi Biaya Investasi penyediaan pasokan daya</span>
+      </p>
+    </div>
+  
+    <div id="map" style="height: 500px; border-radius: 10px; overflow: hidden;"></div>
+  
+    <div class="text-center mt-4">
+      <button class="btn btn-info text-white font-weight-bold">Simpan</button>
+    </div>
+  </section>
+
+  <div style="position:relative; top:-20px;">
+    <svg viewBox="0 0 1440 100" style="display: block;" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#f9f9f9" d="M0,64L1440,0L1440,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <section class="container section-block">
+    <!-- Judul -->
+    <div class="text-center mb-5">
+      <h2 class="font-weight-bold">Sistem Konfigurasi</h2>
+      <h5 class="text-dark">Pilih Konfigurasi sesuai standar yang dibutuhkan</h5>
+    </div>
+  
+    <!-- Kartu Pilihan -->
+    <div class="row justify-content-center">
+      <!-- Tier III -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="text-primary font-weight-bold">Tier III</h5>
+            <p class="text-muted">Services to customers for their consumption</p>
+            <ul class="list-unstyled">
+              <li><i class="fa fa-check text-primary mr-2"></i> Min. pembelian 10 unit REC</li>
+              <li><i class="fa fa-check text-primary mr-2"></i> Self Service</li>
+            </ul>
+            <button class="btn btn-primary mt-3 px-4">Pilih</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Tier IV -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="text-warning font-weight-bold">Tier IV</h5>
+            <p class="text-muted">Energi hijau untuk keperluan sehari-hari</p>
+            <ul class="list-unstyled">
+              <li><i class="fa fa-check text-success mr-2"></i> Pembelian REC < 10 unit</li>
+              <li><i class="fa fa-check text-success mr-2"></i> Self Service</li>
+            </ul>
+            <button class="btn btn-warning text-white mt-3 px-4">Pilih</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Green Add On -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="text-success font-weight-bold">Green Add On</h5>
+            <p class="text-muted">Small, Med & Large Enterprise</p>
+            <ul class="list-unstyled">
+              <li><i class="fa fa-circle text-danger mr-2"></i> Min. pembelian 200 unit REC</li>
+              <li><i class="fa fa-circle text-danger mr-2"></i> Memiliki Badan Hukum</li>
+            </ul>
+            <button class="btn btn-success mt-3 px-4">Pilih</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Tombol Pendaftaran -->
+    <div class="text-center mt-4">
+      <button class="btn btn-info text-white font-weight-bold px-5 py-2">Lanjut untuk Pendaftaran</button>
+    </div>
+  </section>
+  
+  <div style="position:relative; top:-20px;">
+    <svg viewBox="0 0 1440 100" style="display: block;" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#f9f9f9" d="M0,64L1440,0L1440,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <section class="container section-block" style="background-color:#ffffff;">
+    <div class="text-center mb-5">
+      <h2 class="font-weight-bold">Testimoni</h2>
+    </div>
+  
+    <div class="row justify-content-center">
+      <!-- Testimoni 1 -->
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 h-100 text-center shadow-sm p-4">
+          <img src="https://ik.imagekit.io/37g0lwy5ay/blankpeople.png?updatedAt=1747824882253" width="30" class="rounded-circle mx-auto mb-3" alt="Nobie & Angkuy">
+          <h5 class="font-weight-bold">Nobie Bottlesmoker & Angkuy Bottlesmoker</h5>
+          <div class="text-warning mb-2">
+            ★★★★★
+          </div>
+          <p class="text-muted small">
+            “Bottlesmoker merasa terbantu dengan layanan chatting 24jam yang memudahkan untuk berkonsultasi dan layanan pemesanannya sangat memudahkan orang yang awam akan website.”
+          </p>
+          <p class="text-secondary small">Personil Grup, Band Bottlesmoker</p>
+        </div>
+      </div>
+  
+      <!-- Testimoni 2 -->
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 h-100 text-center shadow-sm p-4">
+          <img src="https://ik.imagekit.io/37g0lwy5ay/blankpeople.png?updatedAt=1747824882253" width="30" class="rounded-circle mx-auto mb-3" alt="Adrianto">
+          <h5 class="font-weight-bold">Adrianto</h5>
+          <div class="text-warning mb-2">
+            ★★★★★
+          </div>
+          <p class="text-muted small">
+            “Kami menggunakan server di GFN karena respon cepatnya dari tim teknis yang selalu stand by 24 jam untuk menangani trouble website client. Selain itu juga karena sesama warga Bandung berarti sesama pendukung PERSIB.”
+          </p>
+          <p class="text-secondary small">President Director, SIMAMAUNG</p>
+        </div>
+      </div>
+  
+      <!-- Testimoni 3 -->
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 h-100 text-center shadow-sm p-4">
+          <img src="https://ik.imagekit.io/37g0lwy5ay/blankpeople.png?updatedAt=1747824882253" width="30" class="rounded-circle mx-auto mb-3" alt="Marcel">
+          <h5 class="font-weight-bold">Marcel</h5>
+          <div class="text-warning mb-2">
+            ★★★★★
+          </div>
+          <p class="text-muted small">
+            “Website nya sudah mempunyai server sendiri yang disimpan di data center GFN IT Go Girl Magazine yang setiap hari me-maintenance server nya merasa server Go Girl Magazine sangat aman sekali berada di data center GFN dengan technical support nya yang 24 jam.”
+          </p>
+          <p class="text-secondary small">Staff IT, Majalah Gogirl</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="container section-block text-center py-5">
+    <h2 class="font-weight-bold mb-5">Our Partner</h2>
+  
+    <div class="row justify-content-center align-items-center">
+      <div class="col-6 col-md-3 mb-4">
+        <img src="https://ik.imagekit.io/37g0lwy5ay/dc.png?updatedAt=1747825165018" alt="Mandiri" class="img-fluid" style="max-height: 50px;">
+      </div>
+      <div class="col-6 col-md-3 mb-4">
+        <img src="https://ik.imagekit.io/37g0lwy5ay/pltes.png?updatedAt=1747825201990" alt="BNI" class="img-fluid" style="max-height: 50px;">
+      </div>
+      <div class="col-6 col-md-3 mb-4">
+        <img src="https://ik.imagekit.io/37g0lwy5ay/indonet.png?updatedAt=1747825202044" alt="OVO" class="img-fluid" style="max-height: 50px;">
+      </div>
+      <div class="col-6 col-md-3 mb-4">
+        <img src="https://ik.imagekit.io/37g0lwy5ay/area31.png?updatedAt=1747825202281" alt="GoPay" class="img-fluid" style="max-height: 50px;">
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Footer -->
+  <!-- <footer class="text-center mt-5 py-4 bg-light">
+    <p class="mb-0">© 2025 PLN - #SemuaMakinMudah</p>
+  </footer> -->
+  <footer class="bg-info text-white pt-5 pb-3">
+    <div class="container">
+      <div class="row">
+        
+        <!-- Logo & Layanan -->
+        <div class="col-md-4 mb-4">
+          <div class="mb-3">
+            <img src="https://layanan.pln.co.id/_nuxt/img/logopln.dbbaaef.png" alt="PLN Logo" width="40" class="mr-2">
+            <span class="h5 align-middle font-weight-bold">PLN</span>
+          </div>
+          <h6 class="font-weight-bold">Layanan</h6>
+          <ul class="list-unstyled small">
+            <li><a href="#" class="text-white-50">Pasang Baru</a></li>
+            <li><a href="#" class="text-white-50">Sambungan Sementara</a></li>
+            <li><a href="#" class="text-white-50">Ubah Daya</a></li>
+            <li><a href="#" class="text-white-50">Simulasi</a></li>
+          </ul>
+        </div>
+  
+        <!-- Informasi -->
+        <div class="col-md-4 mb-4">
+          <h6 class="font-weight-bold">Informasi</h6>
+          <ul class="list-unstyled small">
+            <li><a href="#" class="text-white-50">Promo</a></li>
+            <li><a href="#" class="text-white-50">Info Layanan</a></li>
+            <li><a href="#" class="text-white-50">Status Permohonan</a></li>
+            <li><a href="#" class="text-white-50">Entri Kode Konfirmasi</a></li>
+            <li><a href="#" class="text-white-50">Gratis/Diskon Stimulus PSBB</a></li>
+            <li><a href="#" class="text-white-50">Informasi Tagihan/Pembelian Token</a></li>
+          </ul>
+        </div>
+  
+        <!-- Ikuti Kami -->
+        <div class="col-md-4 mb-4">
+          <h6 class="font-weight-bold">Ikuti Kami</h6>
+          <ul class="list-unstyled small">
+            <li><i class="fa fa-instagram mr-2"></i> <span class="text-white-50">pln_id</span></li>
+            <li><i class="fa fa-whatsapp mr-2"></i> <span class="text-white-50">123</span></li>
+            <li><i class="fa fa-twitter mr-2"></i> <span class="text-white-50">pln_123</span></li>
+            <li><i class="fa fa-envelope mr-2"></i> <span class="text-white-50">pln_123</span></li>
+            <li><i class="fa fa-facebook mr-2"></i> <span class="text-white-50">PLN 123</span></li>
+          </ul>
+        </div>
+  
+      </div>
+  
+      <!-- Copyright -->
+      <div class="row mt-4">
+        <div class="col text-right">
+          <p class="mb-0 small"><i class="fa fa-copyright mr-1"></i>2021. PLN</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+
+  <!-- JS from CDN -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script>
+    // Inisialisasi peta
+    const map = L.map('map').setView([-6.914744, 107.609810], 6); // Koordinat Jawa Barat
+  
+    // Tambahkan tile layer OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+    }).addTo(map);
+  
+    // Contoh data lokasi
+    const locations = [
+      { name: "Bandar Lampung", lat: -5.429, lng: 105.261 },
+      { name: "Bandung", lat: -6.9175, lng: 107.6191 },
+      { name: "Semarang", lat: -7.0051, lng: 110.4381 },
+      { name: "Yogyakarta", lat: -7.8014, lng: 110.3647 },
+      { name: "Surabaya", lat: -7.2575, lng: 112.7521 }
+    ];
+  
+    // Tambahkan marker untuk setiap lokasi
+    locations.forEach(loc => {
+      L.marker([loc.lat, loc.lng])
+        .addTo(map)
+        .bindPopup(`<strong>${loc.name}</strong><br>Info koneksi & estimasi biaya di sini.`)
+        .on('click', function () {
+          this.openPopup();
+        });
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
